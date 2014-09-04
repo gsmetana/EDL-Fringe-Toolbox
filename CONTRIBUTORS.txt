@@ -1,11 +1,14 @@
 - Gregory Smetana
   Project Leader
 
-- Dr. Abdulbasit Abid
+- Abdulbasit Abid
   Wavelet transform profilometry (WTP) algorithm in C language.
 
-- Dr. Munther Gdeisat
+- Munther Gdeisat
   Wavelet transform profilometry (WTP) algorithm in C language.
 
+- Joshua Stults
+  FFT-based Abel Inversion
+   
 - scikit-image team
   From whom I borrowed the Python packaging.
