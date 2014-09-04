@@ -1,0 +1,14 @@
+Build Requirements
+------------------
+* `Python >= 2.5 <http://python.org>`__
+* `Numpy >= 1.6 <http://numpy.scipy.org/>`__
+* `Cython >= 0.17 <http://www.cython.org/>`__
+* `scikit-image >= 0.10 <http://scikit-image.org/>`__
+
+You can use pip to automatically install the base dependencies as follows::
+
+    $ pip install -r requirements.txt
+
+Usage Requirements
+------------------
+* `Scipy <http://www.scipy.org/>`__

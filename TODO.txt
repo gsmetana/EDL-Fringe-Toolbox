@@ -1,0 +1,11 @@
+Version 0.3
+------------
+* Add wire.py to mask package for hot wire measurements
+???
+
+Version 0.2
+------------
+* Generally clean up and comment all code
+* Implement glowplug.py differently - output mask parameters to input in another function
+* Add sphere.py to mask package for hot sphere measurements
+

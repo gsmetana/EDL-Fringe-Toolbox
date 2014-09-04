@@ -1,0 +1,11 @@
+- Gregory Smetana
+  Project Leader
+
+- Dr. Abdulbasit Abid
+  Wavelet transform profilometry (WTP) algorithm in C language.
+
+- Dr. Munther Gdeisat
+  Wavelet transform profilometry (WTP) algorithm in C language.
+
+- scikit-image team
+  From whom I borrowed the Python packaging.
