@@ -3,6 +3,8 @@ EDL-Fringe-Toolbox
 
 Collection of scripts to process interferogram fringes
 
+The documentation in EDL-Fringe-Toolbox/doc aims to be a complete description of the toolbox and the methods it uses. A set of scripts illustrating its use is included in a repo at https://github.com/gsmetana/EDL-Fringe-demos
+
 Source
 ------
 https://github.com/gsmetana/EDL-Fringe-Toolbox/
