@@ -1,22 +1,15 @@
 # -*- coding: utf-8 -*-
 # sphere.py --- Remove sphere from images
 
-import numpy as np
-import matplotlib.pyplot as plt
-
 from skimage import data, filter, color
 from skimage.transform import hough_circle
 from skimage.feature import peak_local_max
 from skimage import draw
 from skimage.util import img_as_ubyte
 
-from skimage import filter, io, exposure
-
 def remove_sphere(image, imageToMask, r_min, r_max, debug = False, outputPlot = False):
 
     edges = filter.canny(image, sigma=3, low_threshold=10, high_threshold=50)
-
-    print 'hi3'
 
     # Detect two radii
     hough_radii = np.arange(r_min, r_max, 2)
