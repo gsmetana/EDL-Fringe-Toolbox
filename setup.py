@@ -49,6 +49,7 @@ def configuration(parent_package='', top_path=None):
             quiet=True)
 
     config.add_subpackage('fringeAnalysis')
+    config.add_data_dir('fringeAnalysis/data')
 
     return config
 

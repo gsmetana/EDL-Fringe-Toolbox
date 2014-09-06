@@ -11,6 +11,8 @@ def configuration(parent_package='', top_path=None):
     config.add_subpackage('mask')
     config.add_subpackage('abel')
 
+    config.add_subpackage('data')
+
     def add_test_directories(arg, dirname, fnames):
         if dirname.split(os.path.sep)[-1] == 'tests':
             config.add_data_dir(dirname)
