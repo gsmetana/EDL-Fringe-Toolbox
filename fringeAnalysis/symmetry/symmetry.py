@@ -6,8 +6,9 @@ def center_image_x(image, centerX, centerY, dx):
 
     # have to think carefully about this
     # want to end up with nx odd and have x=0 at centerX
+
     if nx/2 >= centerX:
-        radius = centerX
+        radius = centerX - 1
         centered = image[:, 0:2*radius + 1]
 
     else:
