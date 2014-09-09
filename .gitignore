@@ -55,3 +55,5 @@ docs/_build/
 # User added
 fringeAnalysis/WTP/_perform_WTP.c
 fringeAnalysis/WTP/_perform_WTP.pyx.md5
+*.swp
+*~
