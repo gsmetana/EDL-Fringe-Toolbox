@@ -95,15 +95,16 @@ def perform_abel_discontinuous(x, data):
 
         else:
             # avoid performing operations over discontinuity
-            left = range(0, int(nx/2 -w_discont +1 ))
-            right = range( int(nx/2 +w_discont) , nx )
+            left = range(0, int(nx/2 - w_discont +1 ))
+            right = range( int(nx/2 + w_discont) , nx )
 
             smoothed[i, left] = signal.wiener(data[i, left], mysize=10)
             smoothed[i, right] = signal.wiener(data[i, right], mysize=10)        
-        
-            deriv[i, left] = ifft(fft(smoothed[i,left]) * fft(periodic_gaussian_deriv(x[left], sigma_deriv*dx))).real
-            deriv[i, right ] = ifft(fft(smoothed[i,right]) * fft(periodic_gaussian_deriv(x[right], sigma_deriv*dx))).real  
+            deriv[i,:]= ifft(fft(smoothed[i,:]) * fft(periodic_gaussian_deriv(x, sigma_deriv*dx))).real
+            #deriv[i, left] = ifft(fft(smoothed[i,left]) * fft(periodic_gaussian_deriv(x[left], sigma_deriv*dx))).real
+            #deriv[i, right] = ifft(fft(smoothed[i,right]) * fft(periodic_gaussian_deriv(x[right], sigma_deriv*dx))).real  
             
+            tmp= abel(x, deriv[i,:])
             f_abel[i,:]= tmp[0]
             f_abel[i, 0: w_discont+1] = 0
 
