@@ -7,6 +7,9 @@
 - Munther Gdeisat
   Wavelet transform profilometry (WTP) algorithm in C language.
 
+- Stephanie Coronel
+  Hot sphere experiments
+
 - Joshua Stults
   FFT-based Abel Inversion
    
