@@ -9,6 +9,7 @@ def configuration(parent_package='', top_path=None):
     config.add_subpackage('WTP')
     config.add_subpackage('unbias')
     config.add_subpackage('mask')
+    config.add_subpackage('symmetry')
     config.add_subpackage('abel')
 
     config.add_subpackage('data')
