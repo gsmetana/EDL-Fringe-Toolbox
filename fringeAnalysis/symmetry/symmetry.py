@@ -24,5 +24,5 @@ def symmetry_error_x(image):
     ny, nx = image.shape
     left = np.fliplr(image[:,0:nx/2+1] )
     right = image[:,nx/2:]
-    return (left - right)/left
+    return (left - right)
 
