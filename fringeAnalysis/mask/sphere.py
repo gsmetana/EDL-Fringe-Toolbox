@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 # sphere.py --- Remove sphere from images
-
+import numpy as np
 from skimage import data, filter, color
 from skimage.transform import hough_circle
 from skimage.feature import peak_local_max
 from skimage import draw
 from skimage.util import img_as_ubyte
 
-def remove_sphere(image, imageToMask, r_min, r_max, debug = False, outputPlot = False):
+def locate_sphere(image, r_min, r_max):
 
     edges = filter.canny(image, sigma=3, low_threshold=10, high_threshold=50)
 
@@ -27,11 +27,16 @@ def remove_sphere(image, imageToMask, r_min, r_max, debug = False, outputPlot = 
         radii.extend([radius, radius])
 
     idx = np.argsort(accums)[::-1][0]
-    center_x, center_y = centers[idx]
+    center_y, center_x = centers[idx]
     radius = radii[idx]
-    cx, cy = draw.circle(center_y, center_x, radius)
 
-    masked = np.copy(imageToMask)
+    return (center_x, center_y, radius)
+
+def remove_sphere(image, center_x, center_y, radius):
+
+    cx, cy = draw.circle(center_x, center_y, radius)
+
+    masked = np.copy(image)
     masked[cy, cx] = 0
 
     return masked
