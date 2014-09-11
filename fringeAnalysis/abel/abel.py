@@ -85,7 +85,8 @@ def perform_abel_discontinuous(x, data):
 
     for i in range(0,ny):
 
-        w_discont = int(np.where( data[i,nx/2:] > 0)[0][0])
+        w_discont = int(np.where( data[i,nx/2:] != 0)[0][0]) # what happens if measured phase is zero?
+                                                             # unlikely to have exact value...
 
         if w_discont == 0:
             smoothed[i, :] = signal.wiener(data[i,:], mysize=10)
