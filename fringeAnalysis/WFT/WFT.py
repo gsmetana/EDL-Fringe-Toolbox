@@ -24,7 +24,11 @@ def imagefile2dat(imageFilename, rotate = False, overwrite = False):
     orig = io.imread(imageFilename, as_grey=True)
 
     img = exposure.equalize_adapthist(orig)
+    img = img - np.mean(img)
     img = exposure.rescale_intensity(img,out_range=(0, 255))
+    img = np.round(img)
+
+
     if rotate:
         img = np.transpose(img)
 
@@ -80,6 +84,7 @@ def dat2image(datFilename):
     newFile = open(datFilename, "rb")
     bytes_read = newFile.read()
     newFile.close()
-    img = unpack(str(n*m)+'f', bytes_read)
+    img = unpack(str(n*m)+'d', bytes_read)
     img = np.reshape(img, (m, n))
     return np.transpose(img)
+
