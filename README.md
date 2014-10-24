@@ -3,6 +3,8 @@ EDL-Fringe-Toolbox
 
 Collection of scripts to process interferogram fringes
 
+This toolbox was created to process interferometer fringe patterns from experiments conducted in the Explosion Dynamics Lab at the California Institute of Technology. It includes routines to demodulate the phase of a finite fringe pattern using Wavelet Transform Profilometry or Windowed Fourier Transform and perform an inverse Abel transform on axisymmetric data.
+
 The documentation in EDL-Fringe-Toolbox/doc aims to be a complete description of the toolbox and the methods it uses. A set of scripts illustrating its use is included in a repo at https://github.com/gsmetana/EDL-Fringe-demos
 
 Source
