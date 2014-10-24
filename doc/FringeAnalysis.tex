@@ -24,13 +24,297 @@
 \usepackage{rotating}
 \usepackage{pdflscape}
 
-
-\title{Fringe Analysis Toolbox}
+\title{Fringe Analysis Primer}
 \author{Gregory Smetana}
 %\date{} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed 
 
 \begin{document}
 \maketitle
-Test
+
+\section{Introduction to Interferometry}
+
+\subsection{Principles of Two-Beam Interferometry}
+
+The key to all flow visualization techniques that the refractive index of a fluid depends on density. A change in index of refraction causes light passing through the flow to be deflected from its original direction and also shifts the phase with respect to that of the undisturbed wave. While schlieren and shadowgraph methods are sensitive to the first and second derivatives of the refractive index, repectively, interferometery exploits the wave properties of light to enable direct measurement of the refractive index. The ability to to visualize density is useful in a wide variety of compressible flow, heat transfer, and combustion experiments. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{fig/machZehnder}
+	\caption{Schematic of Mach-Zehnder interferometer}
+	\label{fig:machZehnder}
+\end{figure}
+
+
+
+%\subsection{Interferometer Analysis}
+
+The basic equation for interferometry is
+
+\begin{equation}
+	\Delta l = \int_{s_1} n_1(s) ds - \int_{s_2} n_2(s) ds  %= \int_s \Delta n(s) ds
+	\label{eq:interferometry}
+\end{equation}
+
+where $\Delta l$ is the optical path length difference, $s$ are the light paths, and $n$ is the index of refraction. The optical path length difference is related to the optical phase difference, $\Delta \phi$ by
+
+\begin{equation}
+	\frac{\Delta l}{\lambda}= \frac{\Delta \phi}{2 \pi}
+	\label{eq:pathphase}
+\end{equation}
+
+Bright interference fringes appear in the recording plane where
+\begin{equation}
+	\frac{\Delta l}{\lambda} = 0, \pm 1, \pm 2, \dots
+	\label{eq:fringes}
+\end{equation}
+
+Unless $n$ is constant over the path, $s$, and this length is known, it can be difficult to progress further in the analysis. However, in the case of an axisymmetric field, the Abel inversion may be used to determine volumentric quantities from a path integrated measurement. The method is described in a following section. Once the index of refraction is known, the density may be calculated using the Gladstone-Dale relation:
+
+\begin{equation}
+	\rho = \frac{n-1}{K}
+	\label{eq:gladstone}
+\end{equation}
+
+where $K$ is the Gladstone-Dale constant. The value of $K$ depends weakly on wavelength and temperature and more strongly on mixture composition. A few relevant values are shown in Table ~\ref{tab:gladstone}.
+
+\begin{table}
+	\centering
+	\begin{tabular}{c c c c}
+		Gas & K [cm$^3$/g]& Wavelength [$\mu$m] & Temperature [K] \\ \hline
+		Air & 0.227 & 0.510 & 288 \\
+		O$_2$ & 0.190 & 0.589 & 273 \\
+		N$_2$ & 0.238 & 0.589 & 273 \\
+		H$_2$ & 1.55 & 0.633 & 273 \\
+		CO$_2$ & 0.229 & 0.589 & 273 \\ \hline
+	\end{tabular}
+	\caption{Gladstone-Dale constants for different gases}
+	\label{tab:gladstone}
+\end{table}
+
+
+
+
+\subsection{Infinite Fringe and Finite Fringe (Spatial Carrier) Configurations}
+
+In the infinite fringe configuration, the two beams incident to the imaging surface are competely parallel. This means that in the undeformed state, the entire image is one color, neglecting imperfections in optical components. Any fringes that appear are due to an optical path length difference caused by changes in density of the fluid medium
+
+In the finite fringe configuration, the two beams are not exactly parallel. From a wave interference perspective, a tilt of angle $\varepsilon$ of one of the beams is the same as inserting a transparent wedge of angle $\varepsilon$ into that beam path. This means that in the undeformed state, parallel fringes fill the image. Borrowing terminology from telecommunications, where higher frequency waves are modulated with an input signal, a finite fringe interferogram is sometimes called a spatial carrier image. If the size of the imaging surface is $b$, the number of fringes that appear is
+
+\begin{equation}
+	N= \frac{\varepsilon b}{\lambda}
+	\label{eq:numFringes}
+\end{equation}
+
+The fringe pattern may be written
+
+\begin{equation}
+	I(x,y)=I_0(x,y)+\gamma_0(x,y) \cos[\phi(x,y) + 2 \pi f_0 x]
+	\label{eq:fringe_intensity}
+\end{equation}
+where $I_0$ is the background intensity, $\gamma_0$ is the fringe modulation, $\phi$ is the desired phase term, and $f_0$ is the frequency of the carrier fringes. Equivalently, this may be written
+
+\begin{equation}
+	I(x,y) = I_0(x,y) + c(x,y) \exp(2 \pi i f_0 x) + c^*(x,y) \exp(-2 \pi i f_0 x)
+	\label{eq:fringe_complex}
+\end{equation}
+
+
+
+
+\subsection{Types of Inteferometers}
+
+\subsubsection{Reference Beam Interferometry}
+
+In a reference beam interferometer, one ray of each pair propagates outside of the test field and remains undisturbed. There are many ways to accomplish this, but the perhaps the simplest is the Mach-Zehnder interferometer. The setup, shown in Figure~\ref{fig:machZehnder}, uses a pair of mirrors and beam splitters to separate and recombine the two beam paths. Since one ray has a constant refractive index, Equation~\ref{eq:interferometry} is simply
+
+\begin{equation}
+	\Delta l = \int_{s} \left ( n(s) - n_\infty \right )ds
+	\label{eq:reference_int}
+\end{equation}
+
+\subsubsection{Shearing Interferometry}
+
+In a shearing interferometer, both rays traverse the test field separated or sheared by a small distance, $d$.  A Wollaston prism is commonly used to create the beam separation. The prism separates the two polarization components by a small angle. The optical setup is very similar to a schlieren system, except the knife edge is replaced by the prism unit consisting of the Wollaston prism and two crossed polarizers. The center of the Wollaston prism coincides with the focal point of the lens or spherical mirrors behind the test section.
+%merzkirch
+If the center of the prism exactly coincides with the focal point, the field of view will be free of interference fringes. If the prism is shifted horizontally, a pattern of parallel fringes will be formed due to the path difference
+
+\begin{equation}
+	\Delta l = \varepsilon (w / f) y
+	\label{eq:shear_vert}
+\end{equation}
+
+Due to the blockage of one of the beam pairs, the shearing interferometer will create a double image of solid objects in the field. The width od the double image is $d \cos \alpha$, which is projected into the direction of the shear.
+
+\subsubsection{Holographic Interferometry}
+TODO
+
+
+\section{Carrier Fringe Demodulation}
+
+\subsection{Direct Phase Detection}
+% ichioka and inuiya
+Direct phase detection is a technique developed by Ichioka and Inuiya in 1972, and it is one of the few methods that may be applied in real time. In the method, a band pass filter is applied to remove the low frequency component, $I_0(x,y)$:
+
+\begin{equation}
+	I_{BPF}(x,y) = \gamma_0(x,y)\cos[\phi(x,y) + 2 \pi f_0 x ]
+	\label{eq:dpd1}
+\end{equation}
+
+multiplying by $\cos(2 \pi f_0 x)$ and $\sin(2 \pi f_0 x)$, and using trigonometric identities,
+
+\begin{equation}
+	P_1(x,y) = \frac{\gamma_0(x,y)}{2} \left [ \cos(4 \pi f_0 + \phi(x,y)) + \cos(\phi(x,y)) \right ]
+	\label{eq:dpd2}
+\end{equation}
+
+\begin{equation}
+	Q_1(x,y) = \frac{\gamma_0(x,y)}{2} \left [ \sin(4 \pi f_0 + \phi(x,y)) - \sin(\phi(x,y)) \right ]
+	\label{eq:dpd3}
+\end{equation}
+
+Applying a low pass filter to remove the high frequency components,
+
+
+\begin{equation}
+	P(x,y) = \frac{\gamma_0(x,y)}{2} \cos(\phi(x,y))
+	\label{eq:dpd4}
+\end{equation}
+
+\begin{equation}
+	Q(x,y) =- \frac{\gamma_0(x,y)}{2}\sin(\phi(x,y))
+	\label{eq:dpd5}
+\end{equation}
+
+The phase distribution may be calculated:
+
+\begin{equation}
+	\Phi(x,y) = \arctan \left ( \frac{P(x,y)}{Q(x,y)} \right ) = \phi(x,y) \mod \pi
+	\label{eq:dpd6}
+\end{equation}
+
+
+
+
+
+\subsection{Phase Stepping}
+Phase stepping is a very robust, computationally simple method of fringe pattern analysis that produces a wrapped phase distribution using at least three source fringe patterns. A common technique called temporal phase shift uses four different fringe patterns with an accurately known phase shift of $\pi/2$ between them. Using Equation~\ref{eq:fringe_intensity}, the intensity may be expressed:
+\begin{equation}
+	\begin{split}
+	g_1 &= I(x,y) + \gamma_0(x,y) \cos[\phi(x,y) + 2 \pi f_0 x]\\
+	g_2 & = I(x,y) + \gamma_0(x,y) \cos[\phi(x,y) + 2 \pi f_0 x + \pi/2]\\
+	g_3 &= I(x,y) + \gamma_0(x,y) \cos[\phi(x,y) + 2 \pi f_0 x + \pi]\\
+	g_4 &=I(x,y) + \gamma_0(x,y) \cos[\phi(x,y) + 2 \pi f_0 x + 3/2\pi]
+	\end{split}
+	\label{eq:psp}
+\end{equation}
+
+These equations may be combined to determine the desired phase information:
+\begin{equation}
+	\Psi(x,y) = \arctan \left ( \frac{g_4(x,y) - g_2(x,y)}{g_1(x,y)-g_3(x,y)}\right ) = \left[ 2 \pi f_0 x + \phi(x,y) \right] \mod \pi
+	\label{ }
+\end{equation}
+
+
+The clear drawback of temporal phase shifting is that it requires a static object. Another option is to record all the phase stepped intensity frames simultaneously. This may be done by incorporating multiple cameras or by using a diffraction grating to divide the interferometer output. The disadvantage of this technique is the increased  cost and complexity of multiple cameras, or the reduction in spational resolution using a diffraction grating. 
+
+
+
+\subsection{Fourier Transform Profilometry (Takeda) }
+The Fourier transform of Equation \ref{eq:fringe_complex} is
+
+\begin{equation}
+	\Gamma(f_x, y) = \Gamma(f_x, y) + C(f_x - f_0, y) + C^* (f_x +f_0, y)
+\end{equation}
+where $\Gamma$ and $\Gamma_0$ are the Fourier transforms of $I$ and $I_0$ and $C$ is the Fourier transform of $c$. A representation of the Fourier spectrum is shown in Figure~\ref{fig:fourierSpectrum}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{fig/carrierFourier}
+	\caption{Fourier transform of carrier fringe pattern}
+	\label{fig:fourierSpectrum}
+\end{figure}
+
+The two features to either side of the background term contain the desired phase information. Provided that the spatial variation of the background, modulation and phase terms are small compared to the carrier frequency, then these side features will be well separated from the background term in frequency space. The magnitude of the separation is equal to the carrier frequency. In the Takeda method, the background $A(f_x,y)$ is removed and one of the side features is shifted by $f_0$ to the center. After an inverse transform, the result is a phase between $(-\pi, \pi)$ with the carrier fringes removed.
+
+One of the main issues with this technique is that it requires the carrier fringes to be perfectly uniform. The demodulated phase map may contain significant errors if the fringes are curved or varying in frequency. 
+%p68 francis
+An alternate method of subtracting the carrier frequency involves using a reference image. For both the signal and reference images, one of the features $C(f_x, y)$ is isolated and the phase is computed. By subtracting the wrapped phases of the image and rewrapping the phase modulo $2 \pi$, a wrapped phase map is obtained without the carrier pattern. This method is much more robust to non-uniformities in the carrier fringes. The scheme is outlined in Figure~\ref{fig:curvedFFT}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{fig/curvedFFT}
+	\caption{2D phase subtraction demodulation scheme}
+	\label{fig:curvedFFT}
+\end{figure}
+
+\subsection{Windowed Fourier Ridges (Kemao)}
+TODO
+\subsection{Wavelet Transform Profilometry}
+
+It is well known in digital signal processing theory that the wavelet transform and time-frequency analysis techniques are more suitable for the analysis of nonstationary signals than for stationary signals. Conversely, Fourier transform methods are more appropriate for processing stationary signals, than non-stationary signals. A stationary signal is a signal whose frequency content does not change in time, whereas a nonstationary signal is a signal whose frequency content does change in time. Fringe patterns tend to resemble nonstationary signals. This motivates the wavelet transform and time-frequency analysis techniques for fringe pattern demodulation application.
+
+%The error of demodulation is small when the second and higher-order terms of the Taylor series expansion of the phase can be negligible. The degree of local linearity of the phase is related to the accuracy of demodulation.
+
+%\subsection{Comparision of Methods}
+
+
+%Multiple-shot fringe pattern analysis through phase stepping profilometry. Not appropriate for dynamic measurements.
+
+%Fourier transform is a global operation with the restriction tha tthe signal should be globally stationary.
+
+%Windowed fourier Transform uses a sliding Gaussian window that acts as a filter in both spatial and frequency domains. However, adaptive selection of the window width remains challenging.
+
+%Wavelet transform profilometry yields the fringe signal phase directly.
+
+
+\section{Phase Unwrapping Methods}
+
+The phase demodulation techniques described in the previous section return an extracted phase typically in the interval $(-\pi, \pi)$. The discontinuties of $2 \pi$ must be removed through the use of an ``unwrapping'' algorithm. Recovering the continuous phase data is complicated by disturbances such as noise, holes, or fringe breaks. %huntley 1989
+Phase unwrapping techniques may be divided into two major categories: local and global algorithms.
+
+Local unwrapping algorithms integrate the phase gradients over a certain path that connects all of the pixels. The result is very sensitive to the choice of integration path. Errors from unreliable regions propagate and may cause the method to fail. A good deal of research has been done to isolate unreliable regions and minimize their effects on the result. One type of algorithm called quality-guided phase unwrapping assesses the ``quality'' of each pixel and unwraps the highest quality pixels first and the lowest quality last. A second type called residue-balancing algorithms finds the inconsistent points in the wrapped phase map that create path-dependency and creates branch cuts to prevent the unwrapping path from crossing them.
+
+Global phase-unwrapping algorithms fomulate the problem in terms of minimizing the phase gradient error of a global function to estimate the phase gradient. These methods find a unique solution defined in a particular norm. Advanced methods apply a weight to each pixel to prevent noisy areas from corrupting the result. In general, global phase-unwrapping algorithms are much more computationally intensive than local unwrapping algorithms.
+
+
+\section{Abel Inversion}
+Side on observation of a cylindrically symmetric field yields an intensity, $l(x)$, which is a line of sight integral of the volumetric quantity $g(r)$. The relationship betweeen these quantities is given by the forward Abel transform
+
+\begin{equation}
+	l(x) = 2 \int_{|x|}^\infty \frac{g(r) r}{\sqrt{r^2 - x^2}} dr
+	\label{eq:fwd_abel}
+\end{equation}
+and its inverse
+
+\begin{equation}
+	g(r) = -\frac{1}{\pi} \int_r^\infty \frac{l'(x)}{\sqrt{x^2 -r^2}} dx = -\frac{1}{\pi} \frac{d}{dx}\int_r^\infty \frac{ r l(x)}{x \sqrt{x^2 - r^2 }} dx
+	\label{eq:bw_abel}
+\end{equation}
+
+
+\section{Concerns}
+
+\subsection{Asymmetry}
+Abel Inversion not valid for asymmetric fields
+
+TODO: how to quantify
+
+\subsection{Strong Refraction Effects}
+
+The assumption made in Equation~\ref{eq:interferometry} is that the rays propagate through the test field in a straight line. Strong refraction effects may occur in combustion and convective heat transfer with strong temperature gradients.
+
+\subsection{Dependence on Gas Mixture}
+
+The local concentration values of the mixture compoenents are not known a priori, so it is in general not possible to derive from the interferogram the density distribution or related quantities. Weinberg (1963) has shown that the Gladstone-Dale constant depends on the molecular weight of the mixture and on the polarizability of the atoms in the mixture, but not on their chemical bonding in molecules. For the premixed combustion of methane, where the number of moles does not change during the reaction, the Gladstone-Dale constant has the same value throughout the mixture.
+
+In other cases, it is necessary to include more experimental information or develop a theoretical model in oder to accurately measure temperatures in flames. One possible approach is to record interferograms with different wavelengths. If the number of wavelengths is equal to the number of mixture components, a se tof $N$ equations may be solved:
+
+\begin{equation}
+	n(\lambda_j) -1 \ \sum_{i=1}^N K_i (\lambda_j) \rho_i
+	\label{eq:GDmixture}
+\end{equation}
+
+Unfortunately, $K_i$ is too weakly dispersive to provide enough information for most fluid flows.
+
 \end{document}
