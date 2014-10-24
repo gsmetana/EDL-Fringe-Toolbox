@@ -7,6 +7,7 @@ def configuration(parent_package='', top_path=None):
     config = Configuration('fringeAnalysis', parent_package, top_path)
 
     config.add_subpackage('WTP')
+    config.add_subpackage('WFT')
     config.add_subpackage('unbias')
     config.add_subpackage('mask')
     config.add_subpackage('symmetry')
